@@ -1,35 +1,80 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {ChangeEvent, useEffect, useState} from 'react';
+import {Table} from "./components/Table/Table";
+import {Cell} from './components/Cell/Cell';
+import {Form} from "./components/Form/Form";
+import {Row} from "./components/Row/Row";
+import {Column} from "./components/Column/Column";
 
-function App() {
-  const [count, setCount] = useState(0)
+type CellId = number; // unique value for all table
+type CellValue = number; // three digit random number
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+type Cell = {
+    id: CellId,
+    amount: CellValue
 }
 
-export default App
+
+export const App = () => {
+    const [rows, setRows] = useState<number>(0);
+    const [columns, setColumns] = useState<number>(0);
+    const [matrix, setMatrix] = useState<any>([])
+
+    const handleSetRows = (event: ChangeEvent<HTMLInputElement>) => {
+        if (+event.target.value < 0 || +event.target.value > 100) {
+            return
+        } else {
+            setRows(+event.target.value)
+        }
+    };
+
+    const handleSetColumns = (event: ChangeEvent<HTMLInputElement>) => {
+        if (+event.target.value < 0 || +event.target.value > 100) {
+            return
+        } else {
+            setColumns(+event.target.value)
+        }
+    };
+
+    const handleSubmit = (event: { preventDefault: () => void }) => {
+        event.preventDefault();
+        setMatrix([])
+        let temp:[] = []
+        for (let i = 0; i < rows; i++) {
+            let foo:[] = []
+            for (let j = 0; j < columns; j++) {
+                let obj = {
+                    id: i * j,
+                    amount: Math.floor(Math.random() * 900) + 100
+                }
+                foo.push(obj)
+            }
+            temp.push(foo)
+        }
+        setMatrix(temp)
+    };
+
+    useEffect(() => {
+        console.log(matrix)
+    }, [matrix])
+
+    return (
+        <div className="container">
+            <Form
+                columns={columns}
+                rows={rows}
+                handleSetColumns={handleSetColumns}
+                handleSetRows={handleSetRows}
+                handleSubmit={handleSubmit}
+            />
+            <Table>
+                {matrix.map((column:[], index: number) => (
+                    <Row key={index}>
+                        {column.map((row:[], index: number) => (
+                            <Cell key={index}>{row.amount}</Cell>
+                        ))}
+                    </Row>
+                ))}
+            </Table>
+        </div>
+    );
+}
