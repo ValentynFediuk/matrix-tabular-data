@@ -1,27 +1,33 @@
-import {FC} from "react";
+import React, {FC, useContext} from "react";
+import { Input } from '../ui'
+import {GridContext, GridDispatchContext} from "../../store/contexts";
 
 interface Props {
-    rows: number
-    columns: number
-    handleSubmit: any
-    handleSetRows: any
-    handleSetColumns: any
+    handleSubmit: () => void
 }
-export const Form:FC<Props> = ({rows, columns, handleSubmit, handleSetRows, handleSetColumns}) => {
+export const Form:FC<Props> = ({handleSubmit}) => {
+    const grid = useContext(GridContext)
+    const dispatch = useContext(GridDispatchContext)
+
+
    return (
        <form onSubmit={handleSubmit}>
-           <input
-               type="text"
-               placeholder="M - rows"
-               value={rows}
-               onChange={(event) => handleSetRows(event)}
-           />
-           <input
-               type="text"
-               placeholder="N - columns"
-               value={columns}
-               onChange={(event) => handleSetColumns(event)}
-           />
+           <Input onChange={
+               (event) => {
+                   dispatch({
+                       type: 'setRows',
+                       rows: +event.target.value
+                   })
+               }
+           } value={grid.rows} placeholder='M - rows' />
+           <Input
+               onChange={(event) => {
+                   dispatch({
+                       type: 'setColumns',
+                       columns: +event.target.value
+                   })
+               }}
+               value={grid.columns} placeholder='N - columns' />
            <button type="submit">Submit</button>
        </form>
 
