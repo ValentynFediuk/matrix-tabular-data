@@ -1,52 +1,46 @@
 import {useReducer, useState} from 'react';
-import {Table, Form} from "./components";
-import {GridContext, GridDispatchContext} from './store/contexts';
-import {gridReducer} from "./store/reducers";
+import { Table, Form } from 'components';
+import { GridContext, GridDispatchContext } from 'store/contexts';
+import { gridReducer } from 'store/reducers';
+import { CellValues } from 'types';
 
-type CellId = number; // unique value for all table
-type CellValue = number; // three digit random number
+const createMatrix = (rows: number, columns: number) => {
+    const matrix: CellValues[][] = [];
 
-type Cell = {
-    id: CellId,
-    amount: CellValue
-}
+    for (let i = 0; i < rows; i++) {
+        const row: CellValues[] = [];
+        for (let j = 0; j < columns; j++) {
+            row.push({ id: i * j, amount: Math.floor(Math.random() * 900) + 100 });
+        }
+        matrix.push(row);
+    }
+
+    return matrix;
+};
 
 export const App = () => {
-    const [matrix, setMatrix] = useState<Cell[][]>([])
+    const [matrix, setMatrix] = useState<CellValues[][]>([]);
 
     const [grid, dispatch] = useReducer(gridReducer, {
         rows: 0,
         columns: 0,
     });
 
-    const handleSubmit = (event: { preventDefault: () => void }) => {
+    const handleSubmit = (event: {preventDefault: () => void}) => {
         event.preventDefault();
-
-        let temp:[] = []
-        for (let i = 0; i < grid.rows; i++) {
-            let foo:[] = []
-            for (let j = 0; j < grid.columns; j++) {
-                let obj = {
-                    id: i * j,
-                    amount: Math.floor(Math.random() * 900) + 100
-                }
-                foo.push(obj)
-            }
-            temp.push(foo)
-        }
-        setMatrix(temp)
+        const newMatrix = createMatrix(grid.rows, grid.columns);
+        setMatrix(newMatrix);
     };
 
     return (
         <div className="container">
             <GridContext.Provider value={grid}>
                 <GridDispatchContext.Provider value={dispatch}>
-                    <Form
-                        handleSubmit={handleSubmit}
-                    />
+                    <Form handleSubmit={handleSubmit} />
                     <Table matrix={matrix} />
                 </GridDispatchContext.Provider>
             </GridContext.Provider>
         </div>
     );
-}
+};
+

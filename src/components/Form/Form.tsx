@@ -1,14 +1,13 @@
 import React, {FC, useContext} from "react";
-import { Input } from '../ui'
-import {GridContext, GridDispatchContext} from "../../store/contexts";
+import { Input } from 'components/ui'
+import {GridContext, GridDispatchContext} from "store/contexts";
 
 interface Props {
-    handleSubmit: () => void
+    handleSubmit: (event: { preventDefault: () => void }) => void
 }
 export const Form:FC<Props> = ({handleSubmit}) => {
     const grid = useContext(GridContext)
     const dispatch = useContext(GridDispatchContext)
-
 
    return (
        <form onSubmit={handleSubmit}>

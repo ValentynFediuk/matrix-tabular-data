@@ -1,8 +1,3 @@
-interface GridValues {
-    columns: number
-    rows: number
-}
-
 export interface SetRowsAction {
     type: "setRows";
     rows: number;
@@ -13,12 +8,12 @@ export interface SetColumnsAction {
     columns: number;
 }
 
-type GridActions = SetRowsAction | SetColumnsAction;
+export type GridActions = SetRowsAction | SetColumnsAction;
 export const gridReducer = (grid: GridValues, action:GridActions) => {
     switch (action.type) {
         case 'setRows': {
             if (action.rows < 0 || action.rows > 100) {
-                return
+                return grid
             }
             return {
                 rows: action.rows,
@@ -27,7 +22,7 @@ export const gridReducer = (grid: GridValues, action:GridActions) => {
         }
         case 'setColumns': {
             if (action.columns < 0 || action.columns > 100) {
-                return
+                return grid
             }
             return {
                 rows: grid.rows,
@@ -35,7 +30,7 @@ export const gridReducer = (grid: GridValues, action:GridActions) => {
             }
         }
         default: {
-            throw Error(`Unknown action: ${action.type}`)
+            throw Error("Unknown action")
         }
     }
 }
