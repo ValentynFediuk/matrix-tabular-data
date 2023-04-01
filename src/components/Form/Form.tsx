@@ -1,7 +1,6 @@
 import React, {FC, useContext} from "react";
-import { Input } from 'components/ui'
 import {GridContext, GridDispatchContext} from "store/contexts";
-
+import { Input } from '../ui'
 interface Props {
     handleSubmit: (event: { preventDefault: () => void }) => void
 }
