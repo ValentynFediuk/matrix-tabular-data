@@ -20,6 +20,11 @@ export interface SetColumnsAction {
     columns: string;
 }
 
-export type GridActions = SetRowsAction | SetColumnsAction;
+export interface SetClosestAction {
+    type: "setClosest";
+    closest: string;
+}
 
-export type GridActionTypes = 'setRows' | 'setColumns'
+export type GridActions = SetRowsAction | SetColumnsAction | SetClosestAction;
+
+export type GridActionTypes = 'setRows' | 'setColumns' | 'setClosest'

@@ -4,14 +4,20 @@ export const gridReducer = (grid: GridValues, action: GridActions) => {
     switch (action.type) {
         case 'setRows': {
             return {
-                rows: action.rows,
-                columns: grid.columns
+                ...grid,
+                rows: action.rows
             }
         }
         case 'setColumns': {
             return {
-                rows: grid.rows,
+                ...grid,
                 columns: action.columns
+            }
+        }
+        case 'setClosest': {
+            return {
+                ...grid,
+                closest: action.closest
             }
         }
         default: {
