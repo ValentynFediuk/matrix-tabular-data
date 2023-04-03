@@ -7,6 +7,19 @@ export type CellValues = {
 }
 
 export interface GridValues {
-    columns: number
-    rows: number
+    columns: string
+    rows: string
 }
+export interface SetRowsAction {
+    type: "setRows";
+    rows: string;
+}
+
+export interface SetColumnsAction {
+    type: "setColumns";
+    columns: string;
+}
+
+export type GridActions = SetRowsAction | SetColumnsAction;
+
+export type GridActionTypes = 'setRows' | 'setColumns'
