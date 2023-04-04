@@ -3,6 +3,7 @@ import { Table, Form } from 'components';
 import { GridContext, GridDispatchContext } from 'store/contexts';
 import { gridReducer } from 'store/reducers';
 import { CellValues } from 'types';
+import {Title} from "./components/ui/Title/Title";
 
 const createMatrix = (rows: number, columns: number) => {
     const matrix: CellValues[][] = [];
@@ -34,6 +35,7 @@ export const App = () => {
 
     return (
         <div className="container">
+            <Title size='l' typeTitle='h1'>Matrix Tabular Data</Title>
             <GridContext.Provider value={grid}>
                 <GridDispatchContext.Provider value={dispatch}>
                     <Form handleSubmit={handleSubmit} />

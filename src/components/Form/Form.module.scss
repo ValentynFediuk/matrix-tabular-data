@@ -1,0 +1,12 @@
+@import "../../stylesheets/abstracts/index";
+$dark: #263238;
+
+.form {
+  @include flex-center {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  background: $dark;
+  width: 80vw;
+  padding: 1rem;
+}

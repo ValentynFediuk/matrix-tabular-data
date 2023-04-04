@@ -3,10 +3,7 @@ import { GridDispatchContext } from "store/contexts";
 import { GridActionTypes } from "types";
 import { Input } from "../ui";
 import {FormProps, FormVales} from "./Form.types";
-
-const ROWS_VALIDATION_RULES = /^\d{1,2}$|^100$/;
-const COLUMNS_VALIDATION_RULES = /^\d{1,2}$|^100$/;
-const CLOSEST_VALIDATION_RULES = /^\d{1,2}$|^closestLimit$/;
+import styles from './Form.module.scss'
 
 export const Form: FC<FormProps> = ({ handleSubmit }) => {
     const [formState, setFormState] = useState<FormVales>({
@@ -25,6 +22,10 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
     });
 
     const { rows, columns, closest, errors, closestLimit } = formState;
+
+    const ROWS_VALIDATION_RULES = /^\d{1,2}$|^100$/
+    const COLUMNS_VALIDATION_RULES = /^\d{1,2}$|^100$/
+    const CLOSEST_VALIDATION_RULES = new RegExp(`^(0|[1-9]\\d{0,${closestLimit.toString().length - 1}}(?:\\.\\d{1,10})?)$`)
 
     const hasErrors = formState.errors.rowsError || formState.errors.columnsError || formState.errors.closestError;
 
@@ -66,6 +67,10 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
             }));
         }
     }, [hasErrors, closestLimit]);
+
+    useEffect(() => {
+        setFormState((prevState) => ({...prevState, closestLimit: +formState.rows * +formState.columns}))
+    }, [rows, columns])
 
     const dispatch = useContext(GridDispatchContext);
 
@@ -128,7 +133,7 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={handleSubmit}>
             <Input
                 id="rows-input"
                 onChange={(event) => handleInputChange(event, "setRows")}
