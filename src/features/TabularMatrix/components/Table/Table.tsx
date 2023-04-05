@@ -1,14 +1,10 @@
 import {FC, useEffect, useState} from "react";
 import styles from "./Table.module.scss"
 import {CellValues} from "types";
-import { Cell, Row } from "components";
+import { Cell, Row } from "./components";
 import {useColumnAverage, useRowsSum} from "hooks";
-
-interface Props {
-    matrix: CellValues[][];
-}
-
-export const Table:FC<Props> = ({matrix}) => {
+import {TableProps} from './Table.props'
+export const Table:FC<TableProps> = ({matrix}) => {
     const [rowSum, setRowSum] = useState<number[]>([])
     const [columnAverage, setColumnAverage] = useState<number[]>([])
 

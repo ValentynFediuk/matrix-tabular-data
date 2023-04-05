@@ -1,0 +1,20 @@
+.btn {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+  //text-shadow: $button-text-shadow;
+  //box-shadow: $button-box-shadow;
+  //border-radius: $button-border-radius;
+  //transition: background $button-transition;
+  width: 100%;
+  max-width: 28.8rem;
+  height: 5.6rem;
+
+  &.primary {
+    //background: $primary-btn-background;
+
+    &:hover {
+      //background: $primary-btn-background-hover;
+    }
+  }
+}

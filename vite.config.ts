@@ -13,6 +13,7 @@ export default defineConfig({
       'store/reducers': path.resolve(__dirname, './src/store/reducers/index'),
       'layouts': path.resolve(__dirname, './src/layouts/index'),
       'pages': path.resolve(__dirname, './src/pages/index'),
+      'features': path.resolve(__dirname, './src/features/index'),
     },
   },
 })

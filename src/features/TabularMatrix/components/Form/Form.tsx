@@ -1,7 +1,8 @@
 import React, { ChangeEvent, FC, useContext, useEffect, useState } from "react";
 import { GridDispatchContext } from "store/contexts";
 import { GridActionTypes } from "types";
-import { Input } from "../ui";
+import { Input } from "components";
+import {Button} from "components";
 import {FormProps, FormVales} from "./Form.types";
 import styles from './Form.module.scss'
 
@@ -158,7 +159,7 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
                 label="Closest amount"
                 errorMessage={formState.errors.closestErrorMessage}
             />
-            <button type="submit">Submit</button>
+            <Button appearance='primary' typeBtn="submit">Submit</Button>
         </form>
     );
 };
