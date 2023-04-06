@@ -1,19 +1,19 @@
-import {FC, useEffect, useState} from "react";
-import styles from "./Table.module.scss"
-import {CellValues} from "types";
-import { Cell, Row } from "./components";
-import {useColumnAverage, useRowsSum} from "hooks";
-import {TableProps} from './Table.props'
-export const Table:FC<TableProps> = ({matrix}) => {
-    const [rowSum, setRowSum] = useState<number[]>([])
-    const [columnAverage, setColumnAverage] = useState<number[]>([])
+import { useColumnAverage, useRowsSum } from 'hooks'
+import { type FC, useEffect, useState } from 'react'
+import { type CellValues } from 'types'
+import styles from './Table.module.scss'
+import { type TableProps } from './Table.props'
+import { Cell, Row } from './components'
+export const Table: FC<TableProps> = ({ matrix }) => {
+  const [rowSum, setRowSum] = useState<number[]>([])
+  const [columnAverage, setColumnAverage] = useState<number[]>([])
 
-    useEffect(() => {
-        setRowSum(useRowsSum(matrix))
-        setColumnAverage(useColumnAverage(matrix))
-    }, [matrix])
+  useEffect(() => {
+    setRowSum(useRowsSum(matrix))
+    setColumnAverage(useColumnAverage(matrix))
+  }, [matrix])
 
-    return (
+  return (
         <div className={styles.table}>
             <div>
                 {matrix.map((row: CellValues[], index: number) => (
@@ -35,5 +35,5 @@ export const Table:FC<TableProps> = ({matrix}) => {
                 </div>
             </div>
         </div>
-    )
+  )
 }

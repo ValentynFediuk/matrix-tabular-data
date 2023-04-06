@@ -1,1 +1,1 @@
-export {TabularMatrix} from './TabularMatrix/TabularMatrix'
+export { TabularMatrix } from './TabularMatrix/TabularMatrix'

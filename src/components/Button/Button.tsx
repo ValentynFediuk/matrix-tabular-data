@@ -1,7 +1,7 @@
-import React from 'react'
 import clsx from 'clsx'
-import { ButtonProps } from './Button.props'
+import React from 'react'
 import styles from './Button.module.scss'
+import { type ButtonProps } from './Button.props'
 
 export const Button: React.FC<ButtonProps> = ({
   children,
@@ -14,7 +14,7 @@ export const Button: React.FC<ButtonProps> = ({
   <button
     type={typeBtn === 'submit' ? 'submit' : 'button'}
     className={clsx(styles.btn, {
-      [styles.primary]: appearance === 'primary',
+      [styles.primary]: appearance === 'primary'
     })}
     onClick={handleClick}
     {...props}

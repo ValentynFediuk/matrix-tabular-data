@@ -1,13 +1,10 @@
+import { type FC, type ReactNode } from 'react'
 import styles from './Cell.module.scss'
-import {FC, ReactNode} from "react";
 
 interface Props {
-    children: ReactNode
+  children: ReactNode
 }
 
-export const Cell:FC<Props> = ({children}) => {
-
-    return (
+export const Cell: FC<Props> = ({ children }) => (
         <div className={styles.cell}>{children}</div>
-    )
-}
+)

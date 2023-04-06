@@ -1,9 +1,9 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
+import { type DetailedHTMLProps, type HTMLAttributes, type ReactNode } from 'react'
 
 export interface TitleProps
   extends DetailedHTMLProps<
-    HTMLAttributes<HTMLHeadingElement>,
-    HTMLHeadingElement
+  HTMLAttributes<HTMLHeadingElement>,
+  HTMLHeadingElement
   > {
   children: ReactNode
   size: 's' | 'm' | 'l'

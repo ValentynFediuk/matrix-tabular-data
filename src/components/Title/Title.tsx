@@ -1,7 +1,7 @@
 import clsx from 'clsx'
-import { FC } from 'react'
-import { TitleProps } from './Title.props'
+import { type FC } from 'react'
 import styles from './Title.module.scss'
+import { type TitleProps } from './Title.props'
 
 export const Title: FC<TitleProps> = ({
   children,
@@ -13,7 +13,7 @@ export const Title: FC<TitleProps> = ({
   const classNameBuilder = clsx(styles.title, className, {
     [styles.s]: size === 's',
     [styles.m]: size === 'm',
-    [styles.l]: size === 'l',
+    [styles.l]: size === 'l'
   })
 
   const titleBuilder = () => {

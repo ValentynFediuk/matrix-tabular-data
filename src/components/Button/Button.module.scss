@@ -1,20 +1,34 @@
-.btn {
-  font-size: 1.8rem;
-  font-weight: 500;
-  line-height: 2.4rem;
-  //text-shadow: $button-text-shadow;
-  //box-shadow: $button-box-shadow;
-  //border-radius: $button-border-radius;
-  //transition: background $button-transition;
-  width: 100%;
-  max-width: 28.8rem;
-  height: 5.6rem;
+// Main button variables
+$button-border-width: 0.1rem;
+$button-border-style: solid;
+$button-border-radius: 1rem;
+$button-transition: 0.5s ease-in-out;
+$button-font-size: 1.8rem;
+$button-font-weight: 500;
+$button-line-height: 2.4rem;
+$button-max-width: 28.8rem;
+$button-padding: 0.5rem 2rem;
 
+// Primary button variables
+$primary-button-background: #fff;
+$primary-button-background-hover: blue;
+
+.btn {
+  font-size: $button-font-size;
+  font-weight: $button-font-weight;
+  line-height: $button-line-height;
+  border-width: $button-border-width;
+  border-style: $button-border-style;
+  border-radius: $button-border-radius;
+  width: 100%;
+  max-width: $button-max-width;
+  transition: $button-transition;
+  padding: $button-padding;
   &.primary {
-    //background: $primary-btn-background;
+    background: $primary-button-background;
 
     &:hover {
-      //background: $primary-btn-background-hover;
+      background: $primary-button-background-hover;
     }
   }
 }

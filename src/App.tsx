@@ -1,9 +1,5 @@
-import { MainPage } from "pages";
+import { MainPage } from 'pages'
 
-export const App = () => {
-
-    return (
+export const App = () => (
         <MainPage />
-    );
-};
-
+)

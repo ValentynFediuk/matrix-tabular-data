@@ -1,9 +1,11 @@
-$body-font-size: 1.6rem;
+$body-font-size: 1.6rem !default;
 
-$text-color: #ffffff !default;
-$dark: #1d1d1d;
+$primary: #000000 !default;
+$secondary: #263238 !default;
 
-$button-transition: 0.5s ease-in-out;
+$text-color: snow !default;
+
+$transition: 0.5s ease-in-out !default;
 
 $breakpoints: (
   'xxl': 87.5rem,

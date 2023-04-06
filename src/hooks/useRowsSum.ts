@@ -1,9 +1,3 @@
-import { CellValues } from "types";
+import { type CellValues } from 'types'
 
-export const useRowsSum = (matrix: CellValues[][]): number[] => {
-    return matrix.map((row: CellValues[]) => {
-        return row.reduce((accumulator: number, currentValue: CellValues) => {
-            return accumulator + currentValue.amount;
-        }, 0);
-    });
-};
+export const useRowsSum = (matrix: CellValues[][]): number[] => matrix.map((row: CellValues[]) => row.reduce((accumulator: number, currentValue: CellValues) => accumulator + currentValue.amount, 0))

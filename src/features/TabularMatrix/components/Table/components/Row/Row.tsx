@@ -1,13 +1,11 @@
-import {FC, ReactNode} from "react";
+import { type FC, type ReactNode } from 'react'
 import styles from './row.module.scss'
 interface Props {
-    children: ReactNode
+  children: ReactNode
 }
 
-export const Row:FC<Props> = ({children}) => {
-    return (
+export const Row: FC<Props> = ({ children }) => (
         <div className={styles.row}>
             {children}
         </div>
-    )
-}
+)

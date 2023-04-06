@@ -1,8 +1,8 @@
-import {createContext, Dispatch} from "react";
-import {GridActions} from "types";
+import { createContext, type Dispatch } from 'react'
+import { type GridActions } from 'types'
 
-export const GridContext = createContext({columns: '', rows: '', closest: ''})
+export const GridContext = createContext({ columns: '', rows: '', closest: '' })
 export const GridDispatchContext = createContext<Dispatch<GridActions>>(() => {
-    // default dispatch function can be an empty function or throw an error
-    throw new Error('Dispatch function not set');
-});
+  // default dispatch function can be an empty function or throw an error
+  throw new Error('Dispatch function not set')
+})

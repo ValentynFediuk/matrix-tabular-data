@@ -1,11 +1,8 @@
-import {MainLayout} from "layouts";
-import { TabularMatrix } from "features";
+import { TabularMatrix } from 'features'
+import { MainLayout } from 'layouts'
 
-export const MainPage = () => {
-
-    return (
+export const MainPage = () => (
         <MainLayout>
             <TabularMatrix />
         </MainLayout>
-    )
-}
+)

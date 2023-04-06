@@ -1,5 +1,5 @@
-import {CellValues} from "types";
+import { type CellValues } from 'types'
 
 export interface TableProps {
-    matrix: CellValues[][];
+  matrix: CellValues[][]
 }
