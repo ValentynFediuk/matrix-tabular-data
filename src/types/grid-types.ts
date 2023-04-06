@@ -9,6 +9,7 @@ export type CellValues = {
 export interface GridValues {
     columns: string
     rows: string
+    closest: string
 }
 export interface SetRowsAction {
     type: "setRows";

@@ -2,8 +2,8 @@ import React, { ChangeEvent, FC, useContext, useEffect, useState } from "react";
 import { GridDispatchContext } from "store/contexts";
 import { GridActionTypes } from "types";
 import { Input } from "components";
-import {Button} from "components";
-import {FormProps, FormVales} from "./Form.types";
+import { Button } from "components";
+import { FormProps, FormVales } from "./Form.types";
 import styles from './Form.module.scss'
 
 export const Form: FC<FormProps> = ({ handleSubmit }) => {

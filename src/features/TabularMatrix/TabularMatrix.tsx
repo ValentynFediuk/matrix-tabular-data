@@ -10,6 +10,7 @@ export const TabularMatrix = () => {
     const [grid, dispatch] = useReducer(gridReducer, {
         rows: "",
         columns: "",
+        closest: ""
     });
 
     const handleSubmit = (event: { preventDefault: () => void }) => {
