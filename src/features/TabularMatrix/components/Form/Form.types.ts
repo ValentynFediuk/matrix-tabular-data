@@ -1,5 +1,5 @@
 export interface FormProps {
-  handleSubmit: (event: { preventDefault: () => void }) => void
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>)
 }
 
 export interface FormVales {

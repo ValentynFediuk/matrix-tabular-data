@@ -1,5 +1,11 @@
 import { Input, Button } from 'components'
-import React, { type ChangeEvent, type FC, useContext, useEffect, useState } from 'react'
+import React, {
+  type ChangeEvent,
+  type FC,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import { GridDispatchContext } from 'store/contexts'
 import { type GridActionTypes } from 'types'
 import styles from './Form.module.scss'
@@ -17,17 +23,22 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
       columnsError: false,
       columnsErrorMessage: '',
       closestError: false,
-      closestErrorMessage: ''
-    }
+      closestErrorMessage: '',
+    },
   })
 
   const { rows, columns, closest, errors, closestLimit } = formState
 
   const ROWS_VALIDATION_RULES = /^\d{1,2}$|^100$/
   const COLUMNS_VALIDATION_RULES = /^\d{1,2}$|^100$/
-  const CLOSEST_VALIDATION_RULES = new RegExp(`^(0|[1-9]\\d{0,${closestLimit.toString().length - 1}}(?:\\.\\d{1,10})?)$`)
+  const CLOSEST_VALIDATION_RULES = new RegExp(
+    `^(0|[1-9]\\d{0,${closestLimit.toString().length - 1}}(?:\\.\\d{1,10})?)$`
+  )
 
-  const hasErrors = formState.errors.rowsError || formState.errors.columnsError || formState.errors.closestError
+  const hasErrors =
+    formState.errors.rowsError ||
+    formState.errors.columnsError ||
+    formState.errors.closestError
 
   useEffect(() => {
     if (hasErrors) {
@@ -36,12 +47,12 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
 
         if (prevState.errors.rowsError) {
           updatedErrors.rowsErrorMessage =
-                        'The "M" value should be a number from 0 to 100'
+            'The "M" value should be a number from 0 to 100'
         }
 
         if (prevState.errors.columnsError) {
           updatedErrors.columnsErrorMessage =
-                        'The "N" value should be a number from 0 to 100'
+            'The "N" value should be a number from 0 to 100'
         }
 
         if (prevState.errors.closestError) {
@@ -50,7 +61,7 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
 
         return {
           ...prevState,
-          errors: updatedErrors
+          errors: updatedErrors,
         }
       })
     } else {
@@ -62,19 +73,25 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
           columnsError: false,
           columnsErrorMessage: '',
           closestError: false,
-          closestErrorMessage: ''
-        }
+          closestErrorMessage: '',
+        },
       }))
     }
   }, [hasErrors, closestLimit])
 
   useEffect(() => {
-    setFormState((prevState) => ({ ...prevState, closestLimit: +formState.rows * +formState.columns }))
+    setFormState((prevState) => ({
+      ...prevState,
+      closestLimit: +formState.rows * +formState.columns,
+    }))
   }, [rows, columns])
 
   const dispatch = useContext(GridDispatchContext)
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>, actionType: GridActionTypes) => {
+  const handleInputChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    actionType: GridActionTypes
+  ) => {
     const newValue = event.target.value.toString().trim()
 
     switch (actionType) {
@@ -89,8 +106,8 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
             rowsError,
             rowsErrorMessage: rowsError
               ? 'The "M" value should be a number from 0 to 100'
-              : ''
-          }
+              : '',
+          },
         })
         dispatch({ type: actionType, rows: newValue })
         break
@@ -105,8 +122,8 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
             columnsError,
             columnsErrorMessage: columnsError
               ? 'The "N" value should be a number from 0 to 100'
-              : ''
-          }
+              : '',
+          },
         })
         dispatch({ type: actionType, columns: newValue })
         break
@@ -121,8 +138,8 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
             closestError,
             closestErrorMessage: closestError
               ? `The "X" value should be a number from 0 to ${closestLimit}`
-              : ''
-          }
+              : '',
+          },
         })
         dispatch({ type: actionType, closest: newValue })
         break
@@ -133,32 +150,40 @@ export const Form: FC<FormProps> = ({ handleSubmit }) => {
   }
 
   return (
-        <form className={styles.form} onSubmit={handleSubmit}>
-            <Input
-                id="rows-input"
-                onChange={(event) => { handleInputChange(event, 'setRows') }}
-                value={rows}
-                placeholder='Enter the "M" value'
-                label="Rows"
-                errorMessage={formState.errors.rowsErrorMessage}
-            />
-            <Input
-                id="columns-input"
-                onChange={(event) => { handleInputChange(event, 'setColumns') }}
-                value={columns}
-                placeholder='Enter the "N" value'
-                label="Columns"
-                errorMessage={formState.errors.columnsErrorMessage}
-            />
-            <Input
-                id="closest-amount-input"
-                onChange={(event) => { handleInputChange(event, 'setClosest') }}
-                value={closest}
-                placeholder='Type the "X" value'
-                label="Closest amount"
-                errorMessage={formState.errors.closestErrorMessage}
-            />
-            <Button appearance='primary' typeBtn="submit">Submit</Button>
-        </form>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <Input
+        id="rows-input"
+        onChange={(event) => {
+          handleInputChange(event, 'setRows')
+        }}
+        value={rows}
+        placeholder='Enter the "M" value'
+        label="Rows"
+        errorMessage={formState.errors.rowsErrorMessage}
+      />
+      <Input
+        id="columns-input"
+        onChange={(event) => {
+          handleInputChange(event, 'setColumns')
+        }}
+        value={columns}
+        placeholder='Enter the "N" value'
+        label="Columns"
+        errorMessage={formState.errors.columnsErrorMessage}
+      />
+      <Input
+        id="closest-amount-input"
+        onChange={(event) => {
+          handleInputChange(event, 'setClosest')
+        }}
+        value={closest}
+        placeholder='Type the "X" value'
+        label="Closest amount"
+        errorMessage={formState.errors.closestErrorMessage}
+      />
+      <Button appearance="primary" typeBtn="submit">
+        Submit
+      </Button>
+    </form>
   )
 }
